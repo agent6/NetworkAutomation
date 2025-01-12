@@ -1,6 +1,6 @@
 ---
 - name: Remove a user from Cisco switches if it exists
-  hosts: cisco_switches
+  hosts: all
   gather_facts: no
 
   tasks:
