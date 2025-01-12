@@ -1,0 +1,6 @@
+---
+- name: Test connection to Cisco switch
+  hosts: switches
+  tasks:
+    - name: Gather facts
+      ios_facts:
