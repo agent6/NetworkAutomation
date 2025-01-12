@@ -1,12 +1,13 @@
 ---
-- name: Cisco show version example
+- name: Run show version on Cisco devices
   hosts: all
   tasks:
-    - name: run show version
-      ios_command:
-        commands: show version | incl Version
-      register: output
+    - name: Run show version
+      cisco.ios.ios_command:
+        commands:
+          - show version
+      register: show_version_output
 
-    - name: print output
-      debug:
-        var: output.stdout_lines
+    - name: Display output
+      ansible.builtin.debug:
+        msg: "{{ show_version_output }}"
