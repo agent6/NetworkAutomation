@@ -1,0 +1,18 @@
+---
+- name: Retrieve current time from NTP server
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Ensure ntpdate is installed
+      ansible.builtin.package:
+        name: ntpdate
+        state: present
+      become: yes
+
+    - name: Query NTP server for current time
+      ansible.builtin.command: ntpdate -q pool.ntp.org
+      register: ntp_output
+
+    - name: Extract and display current time from NTP server
+      ansible.builtin.debug:
+        msg: "Current time from NTP server: {{ ntp_output.stdout }}"
