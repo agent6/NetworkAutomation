@@ -2,13 +2,6 @@
 - name: Add user to Cisco switches with privilege level 15
   hosts: all
   gather_facts: no
-  vars_prompt:
-    - name: "username"
-      prompt: "Enter the username to add"
-      private: no
-    - name: "password"
-      prompt: "Enter the password for the user"
-      private: yes
 
   tasks:
     - name: Add user to the switch
