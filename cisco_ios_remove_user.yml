@@ -1,0 +1,20 @@
+---
+- name: Remove a user from Cisco switches if it exists
+  hosts: cisco_switches
+  gather_facts: no
+
+  tasks:
+    - name: Check if the user exists
+      cisco.ios.ios_user:
+        name: "{{ username_to_remove }}"
+        state: absent
+      register: user_removal
+
+    - name: Display user removal status
+      debug:
+        msg: >
+          {% if user_removal.changed %}
+            User '{{ username_to_remove }}' was present and has been removed.
+          {% else %}
+            User '{{ username_to_remove }}' does not exist; no changes made.
+          {% endif %}
