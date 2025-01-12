@@ -1,5 +1,5 @@
 ---
-- name: Retrieve current time from NTP server
+- name: Retrieve current time from NTP server 2
   hosts: all
   gather_facts: yes
   become: yes
