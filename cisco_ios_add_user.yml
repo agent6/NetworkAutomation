@@ -1,0 +1,23 @@
+---
+- name: Add user to Cisco switches with privilege level 15
+  hosts: switches
+  gather_facts: no
+  vars_prompt:
+    - name: "username"
+      prompt: "Enter the username to add"
+      private: no
+    - name: "password"
+      prompt: "Enter the password for the user"
+      private: yes
+
+  tasks:
+    - name: Add user to the switch
+      ios_config:
+        lines:
+          - username {{ username }} privilege 15 secret {{ password }}
+        provider:
+          host: "{{ inventory_hostname }}"
+          username: "{{ ansible_user }}"
+          password: "{{ ansible_ssh_pass }}"
+          authorize: yes
+          auth_pass: "{{ ansible_become_pass }}"
