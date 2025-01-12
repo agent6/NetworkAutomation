@@ -1,6 +1,6 @@
 ---
 - name: Add user to Cisco switches with privilege level 15
-  hosts: switches
+  hosts: all
   gather_facts: no
   vars_prompt:
     - name: "username"

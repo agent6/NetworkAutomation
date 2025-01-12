@@ -6,6 +6,16 @@
       ansible.builtin.command:
         cmd: ansible-galaxy collection install ansible.netcommon cisco.ios
 
+    - name: List all installed Ansible collections
+      ansible.builtin.command:
+        cmd: ansible-galaxy collection list
+      register: collection_list_output
+
+    - name: Display installed collections
+      ansible.builtin.debug:
+        msg: "{{ collection_list_output.stdout }}"
+
     - name: Hello Message
       ansible.builtin.debug:
         msg: "Hello World!"
+
