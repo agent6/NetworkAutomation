@@ -1,0 +1,14 @@
+---
+
+- name: Cisco show version example
+  gather_facts: false
+
+  tasks:
+    - name: run show version
+      ios_command:
+        commands: show version | incl Version
+      register: output
+
+    - name: print output
+      debug:
+        var: output.stdout_lines
