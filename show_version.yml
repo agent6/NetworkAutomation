@@ -1,8 +1,6 @@
 ---
 - name: Cisco show version example
   hosts: all
-  gather_facts: false
-
   tasks:
     - name: run show version
       ios_command:
