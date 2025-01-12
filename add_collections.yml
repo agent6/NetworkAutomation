@@ -1,20 +1,24 @@
 ---
-- name: Hello World Sample
+- name: Install required Ansible collections
   hosts: localhost
+  gather_facts: no
   tasks:
-    - name: Install required Ansible collections
+    - name: Install cisco.ios collection
       ansible.builtin.command:
-        cmd: ansible-galaxy collection install ansible.netcommon cisco.ios
+        cmd: ansible-galaxy collection install cisco.ios
+      register: cisco_ios_install
+      changed_when: "'Skipping' not in cisco_ios_install.stdout"
 
-    - name: List all installed Ansible collections
-      ansible.builtin.shell:
-        cmd: ansible-galaxy collection list
-      register: collections_output
-
-    - name: Output installed collections
+    - name: Output result of cisco.ios installation
       ansible.builtin.debug:
-        msg: "{{ collections_output.stdout }}"
+        msg: "{{ cisco_ios_install.stdout }}"
 
-    - name: Hello Message
+    - name: Install ansible.netcommon collection
+      ansible.builtin.command:
+        cmd: ansible-galaxy collection install ansible.netcommon
+      register: netcommon_install
+      changed_when: "'Skipping' not in netcommon_install.stdout"
+
+    - name: Output result of ansible.netcommon installation
       ansible.builtin.debug:
-        msg: "Hello World!"
+        msg: "{{ netcommon_install.stdout }}"
