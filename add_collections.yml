@@ -1,0 +1,10 @@
+- name: Hello World Sample
+  hosts: all
+  tasks:
+    - name: Install required Ansible collections
+      ansible.builtin.command:
+        cmd: ansible-galaxy collection install ansible.netcommon cisco.ios
+
+    - name: Hello Message
+      ansible.builtin.debug:
+        msg: "Hello World!"
