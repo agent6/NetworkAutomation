@@ -1,5 +1,4 @@
 ---
-
 - name: Cisco show version example
   gather_facts: false
 
