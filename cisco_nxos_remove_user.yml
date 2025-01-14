@@ -1,5 +1,5 @@
 ---
-- name: Remove specified user from NX-OS switch
+- name: Remove specified user from NX-OS switch and log the action
   hosts: all
   gather_facts: false
   collections:
@@ -10,3 +10,10 @@
       nxos_user:
         name: "{{ nxos_user_to_remove }}"
         state: absent
+
+    - name: Log user removal in NX-OS system log
+      nxos_command:
+        commands:
+          - command: "send log User {{ nxos_user_to_remove }} has been removed from the device"
+            output: none
+      when: ansible_net_username == "{{ nxos_user_to_remove }}"
