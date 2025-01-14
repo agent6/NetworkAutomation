@@ -6,11 +6,6 @@
     - cisco.nxos
     - community.general
 
-  vars:
-    # These variables will be populated from the AWX survey
-    nxos_username: "{{ username }}"
-    nxos_password: "{{ password }}"
-
   tasks:
     - name: Ensure user exists with network-admin role
       nxos_user:
