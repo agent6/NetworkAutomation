@@ -6,11 +6,12 @@
     - cisco.nxos
     - community.general
 
-  tasks:
-    - name: Generate a 16-character random password
-      set_fact:
-        nxos_password: "{{ lookup('community.general.random_string', length=16) }}"
+  vars:
+    # These variables will be populated from the AWX survey
+    nxos_username: "{{ username }}"
+    nxos_password: "{{ password }}"
 
+  tasks:
     - name: Ensure user exists with network-admin role
       nxos_user:
         name: "{{ nxos_username }}"
@@ -18,6 +19,6 @@
         role: network-admin
         state: present
 
-    - name: Display the generated password
+    - name: Display the provided password
       debug:
         msg: "The password for user {{ nxos_username }} is {{ nxos_password }}"
