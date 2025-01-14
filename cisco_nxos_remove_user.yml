@@ -1,0 +1,12 @@
+---
+- name: Remove specified user from NX-OS switch
+  hosts: all
+  gather_facts: false
+  collections:
+    - cisco.nxos
+
+  tasks:
+    - name: Ensure the user is absent
+      nxos_user:
+        name: "{{ nxos_user_to_remove }}"
+        state: absent
