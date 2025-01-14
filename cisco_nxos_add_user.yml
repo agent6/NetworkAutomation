@@ -1,5 +1,6 @@
 ---
 - name: Add network-admin user to NX-OS switch
+  hosts: all
   gather_facts: false
   collections:
     - cisco.nxos
