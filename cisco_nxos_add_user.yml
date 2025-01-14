@@ -4,11 +4,20 @@
   gather_facts: false
   collections:
     - cisco.nxos
+    - community.general
 
   tasks:
+    - name: Generate a 16-character random password
+      set_fact:
+        nxos_password: "{{ lookup('community.general.random_string', length=16) }}"
+
     - name: Ensure user exists with network-admin role
       nxos_user:
         name: "{{ nxos_username }}"
         configured_password: "{{ nxos_password }}"
         role: network-admin
         state: present
+
+    - name: Display the generated password
+      debug:
+        msg: "The password for user {{ nxos_username }} is {{ nxos_password }}"
