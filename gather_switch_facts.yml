@@ -1,6 +1,0 @@
----
-- name: Gather only the config and default facts
-  hosts: all
-  cisco.ios.ios_facts:
-    gather_subset:
-      - config
