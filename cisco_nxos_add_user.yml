@@ -19,6 +19,6 @@
         role: network-admin
         state: present
 
-    - name: Display the provided password
+    - name: User Creation
       debug:
-        msg: "The password for user {{ nxos_username }} is {{ nxos_password }}"
+        msg: "The user {{ nxos_username }} has been created"
