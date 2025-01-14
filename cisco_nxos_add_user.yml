@@ -1,0 +1,14 @@
+---
+- name: Add network-admin user to NX-OS switch
+  hosts: all
+  gather_facts: false
+  collections:
+    - cisco.nxos
+
+  tasks:
+    - name: Ensure user exists with network-admin role
+      nxos_user:
+        name: "{{ nxos_username }}"
+        configured_password: "{{ nxos_password }}"
+        role: network-admin
+        state: present
