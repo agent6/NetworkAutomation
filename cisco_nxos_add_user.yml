@@ -7,6 +7,11 @@
     - community.general
 
   tasks:
+    - name: Ensure passwords match
+      fail:
+        msg: "The provided passwords do not match. Please try again."
+      when: nxos_password != confirm_password
+
     - name: Ensure user exists with network-admin role
       nxos_user:
         name: "{{ nxos_username }}"
@@ -14,6 +19,6 @@
         role: network-admin
         state: present
 
-    - name: User Creation
+    - name: Display the provided password
       debug:
-        msg: "The user {{ nxos_username }} has been created"
+        msg: "The password for user {{ nxos_username }} is {{ nxos_password }}"
