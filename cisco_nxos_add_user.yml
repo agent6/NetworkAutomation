@@ -21,4 +21,4 @@
 
     - name: Display the provided password
       debug:
-        msg: "The password for user {{ nxos_username }} is {{ nxos_password }}"
+        msg: "The user {{ nxos_username }} is has been created."
