@@ -22,3 +22,7 @@
     - name: Display the provided password
       debug:
         msg: "The user {{ nxos_username }} is has been created."
+
+    - name: Save configuration to startup-config
+      nxos_config:
+        save_when: modified
