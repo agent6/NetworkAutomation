@@ -5,6 +5,7 @@
   collections:
     - cisco.nxos
 
+  tasks:
     - name: Add user with network-admin role
       when: nxos_password != confirm_password
       cisco.nxos.nxos_user:
