@@ -1,5 +1,5 @@
 ---
-- name: Remove specified user from NX-OS switch and log the action
+- name: Remove user from NX-OS switch
   hosts: all
   gather_facts: no
   collections:
