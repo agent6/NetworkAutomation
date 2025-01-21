@@ -7,7 +7,7 @@
 
   tasks:
     - name: Add user with network-admin role
-      when: nxos_password = confirm_password
+      when: nxos_password == confirm_password
       cisco.nxos.nxos_user:
         name: "{{ nxos_username }}"
         configured_password: "{{ nxos_password }}"
