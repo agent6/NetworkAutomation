@@ -1,28 +1,18 @@
 ---
 - name: Add network-admin user to NX-OS switch
   hosts: all
-  gather_facts: false
+  gather_facts: no
   collections:
     - cisco.nxos
-    - community.general
 
-  tasks:
-    - name: Ensure passwords match
-      fail:
-        msg: "The provided passwords do not match. Please try again."
+    - name: Add user with network-admin role
       when: nxos_password != confirm_password
-
-    - name: Ensure user exists with network-admin role
-      nxos_user:
+      cisco.nxos.nxos_user:
         name: "{{ nxos_username }}"
         configured_password: "{{ nxos_password }}"
         role: network-admin
         state: present
 
-    - name: Display the provided password
-      debug:
-        msg: "The user {{ nxos_username }} is has been created."
-
     - name: Save configuration to startup-config
-      nxos_config:
+      cisco.nxos.nxos_config:
         save_when: modified
