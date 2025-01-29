@@ -2,8 +2,6 @@
 - name: Remove user from NX-OS switch
   hosts: all
   gather_facts: no
-  collections:
-    - cisco.nxos
 
   tasks:
     - name: Ensure the user is absent
