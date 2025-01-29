@@ -2,8 +2,6 @@
 - name: Add network-admin user to NX-OS switch
   hosts: all
   gather_facts: no
-  collections:
-    - cisco.nxos
 
   tasks:
     - name: Add user with network-admin role
